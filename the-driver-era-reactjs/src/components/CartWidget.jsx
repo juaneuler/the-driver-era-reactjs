@@ -1,5 +1,9 @@
 import React from 'react'
+
+// Imagen del carrito
 import cart from '../assets/cart.svg'
+
+//Hoja de estilos
 import '../styles/cartwidget.scss'
 
 const CartWidget = () => {

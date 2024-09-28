@@ -5,6 +5,10 @@
     padding: 10px;
     margin: 20px;
 
+    img {
+        border-radius: 20px;
+    }
+
     ul {
         display: flex;
         justify-content: space-between;
@@ -17,6 +21,7 @@
             list-style: none;
             padding: 20px;
             margin: 10px;
+            font-size: 25px;
         }
     }
 }

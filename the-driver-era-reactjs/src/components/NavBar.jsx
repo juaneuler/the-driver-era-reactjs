@@ -1,6 +1,12 @@
 import React from 'react'
+
+// Hoja de estilos
 import '../styles/navbar.scss'
+
+// Ícono de la tienda
 import brandIcon from '../assets/brandIcon.jpg'
+
+// Componente carrito
 import CartWidget from './CartWidget'
 
 const NavBar = () => {
