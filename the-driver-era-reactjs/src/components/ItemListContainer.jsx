@@ -1,9 +1,11 @@
+// Componente contenedor
+
 import React, { useState, useEffect } from 'react'
 
 // Array de productos
 import arrayDeProductos from "../assets/productos.json"
 
-// Componente Item List
+// Importación del componente Item List
 import ItemList from './ItemList'
 
 // Hoja de estilos
@@ -35,7 +37,7 @@ const ItemListContainer = ({ greeting }) => {
       <div>
         <h1>{greeting}</h1>
       </div>
-      <ItemList productos={productos} />
+      <ItemList productos={productos}/>
     </>
   )
 }

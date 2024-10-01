@@ -1,3 +1,5 @@
+// Componente de la barra de navegación
+
 import React from 'react'
 
 // Hoja de estilos
@@ -6,7 +8,7 @@ import '../styles/navbar.scss'
 // Ícono de la tienda
 import brandIcon from '../assets/brandIcon.jpg'
 
-// Componente carrito
+// Importación del componente carrito
 import CartWidget from './CartWidget'
 
 const NavBar = () => {

@@ -1,9 +1,9 @@
+// Componente que establece lo que contiene cada tarjeta de producto en su interior
+
 import React from 'react'
 
 // Hoja de estilos
 import "../styles/item.scss"
-
-// Array de productos
 
 
 const Item = ({item}) => {
@@ -11,8 +11,7 @@ const Item = ({item}) => {
     <div className='contenedorCartaProducto'>
         <img src={item.imagen}/>
         <h2>{item.nombre}</h2>
-        <h3>${item.precio}</h3>
-        <h4>{item.descripcion}</h4>
+        <h3>U$D {item.precio}</h3>
     </div>
   )
 }

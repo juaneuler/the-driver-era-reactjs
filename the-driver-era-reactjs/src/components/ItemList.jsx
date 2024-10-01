@@ -1,3 +1,5 @@
+// Componente donde uso el método map para renderizar los elementos del array y generar las tarjetas en el DOM
+
 import React from 'react'
 
 // Componente de las cartas de los productos
@@ -5,8 +7,6 @@ import Item from './Item'
 
 // Hoja de estilos
 import "../styles/itemlist.scss"
-
-// Acá se hace el método map para renderizar cada elemento del array de productos
 
 const ItemList = ({ productos }) => {
   return (
