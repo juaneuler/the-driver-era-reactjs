@@ -1,0 +1,21 @@
+.contenedorDelContador {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .contenedorDeBotones {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .boton {
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+        padding: 5px;
+        font-size: 15px;
+        margin: 10px;
+    }
+}

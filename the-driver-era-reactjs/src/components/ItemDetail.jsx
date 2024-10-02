@@ -1,9 +1,13 @@
 import React from 'react'
+import ItemCount from "../components/ItemCount"
 
 // Hoja de estilos
 import "../styles/itemdetail.scss"
 
 const ItemDetail = ({ producto }) => {
+
+    const stock = producto.stock
+
     return (
         <div className='contenedorCartaProductoIndividual'>
             <img src={producto.imagen} />
@@ -11,6 +15,7 @@ const ItemDetail = ({ producto }) => {
             <h2>Unidades disponibles: {producto.stock}</h2>
             <h3>U$D {producto.precio}</h3>
             <h4>{producto.descripcion}</h4>
+            <ItemCount inicial={1} stock={stock} onAdd={(cantidad) => console.log("La cantidad agregada es ", cantidad)}/>
         </div>
     )
 }

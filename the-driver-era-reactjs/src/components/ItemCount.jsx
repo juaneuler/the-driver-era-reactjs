@@ -3,6 +3,9 @@
 import React from 'react'
 import { useState } from 'react'
 
+// Hoja de estilos
+import "../styles/itemcount.scss"
+
 const ItemCount = ({stock, inicial, onAdd}) => {
 
     const [cantidad, setCantidad] = useState(inicial)
