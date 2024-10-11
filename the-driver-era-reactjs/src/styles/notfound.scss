@@ -1,0 +1,16 @@
+.notFound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: #222831;
+
+    h2 {
+        color: white;
+    }
+
+    h3 {
+        color: white;
+    }
+}

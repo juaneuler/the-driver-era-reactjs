@@ -17,11 +17,30 @@
         border-radius: 20px;
 
         li {
-            text-decoration: none;
             list-style: none;
             padding: 20px;
             margin: 10px;
             font-size: 25px;
+
+            .isActive {
+                text-decoration: none;
+                color: green;
+                transition: color 1s;
+
+                &:hover {
+                    color: orangered
+                }
+            }
+
+            .notActive {
+                text-decoration: none;
+                color: white;
+                transition: color 1s;
+
+                &:hover {
+                    color: orangered
+                }
+            }
         }
     }
 }

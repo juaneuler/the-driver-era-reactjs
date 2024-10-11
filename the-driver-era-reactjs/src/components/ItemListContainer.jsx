@@ -10,12 +10,21 @@ import ItemList from './ItemList'
 
 // Hoja de estilos
 import "../styles/itemlistcontainer.scss"
+import { useParams } from 'react-router-dom'
 
-const ItemListContainer = ({ greeting }) => {
+
+const ItemListContainer = () => {
+
+  // Estado para productos y para la "pantalla" de carga
+
+  const [productos, setProductos] = useState([]);
+  const [cargando, setCargando] = useState(true)
+
+  // Parámetros
+  const { categoryId } = useParams()
 
   // Emulo la carga de productos con setTimeOut
-  const [productos, setProductos] = useState([]);
-
+  
   const fetchProductos = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -24,22 +33,42 @@ const ItemListContainer = ({ greeting }) => {
     })
   }
 
-  // 
+  // Resolución de la promesa y filtrado por categorías. También hago uso de la pantalla de carga
+
   useEffect(() => {
+
+    setCargando(true)
+
     fetchProductos().then((productosCargados) => {
-      setProductos(productosCargados)
-    })
-  }, [])
+
+      let productosFiltrados = [];
+
+      if (categoryId) {
+        productosFiltrados = productosCargados.filter(producto => producto.category === categoryId);
+        setProductos(productosFiltrados);
+      } else {
+        productosFiltrados = productosCargados;
+      }
+
+      setProductos(productosFiltrados)
+      setCargando(false)
+    });
+  }, [categoryId])
+
 
   // Retorno el contenido de la tienda
   return (
     <>
-      <div>
-        <h1>{greeting}</h1>
-      </div>
-      <ItemList productos={productos}/>
+      {cargando ? (
+        <h1>Aguarde mientras se carga el sitio web...</h1>
+      ) : (
+        <div>
+          <h1>SHOP</h1>
+          <ItemList productos={productos} />
+        </div>
+      )}
     </>
-  )
-}
+  );
+};
 
 export default ItemListContainer

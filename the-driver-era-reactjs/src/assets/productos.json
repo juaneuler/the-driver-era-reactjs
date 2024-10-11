@@ -3,72 +3,117 @@
         "ID": 1,
         "nombre": "Live at the Greek (descarga digital)",
         "precio": 14,
-        "imagen": "./src/assets/LiveAtTheGreekDigital.png",
+        "imagen": "/src/assets/LiveAtTheGreekDigital.png",
         "descripcion": "Archivos de audio del concierto",
-        "stock": 100
+        "stock": 100,
+        "category": "musica"
     },
     {
         "ID": 2,
         "nombre": "Live at the Greek (CD Firmado)",
         "precio": 27,
-        "imagen": "./src/assets/LiveAtTheGreekCD.png",
+        "imagen": "/src/assets/LiveAtTheGreekCD.png",
         "descripcion": "CD firmado por Ross y Rocky",
-        "stock": 25
+        "stock": 25,
+        "category": "musica"
     },
     {
         "ID": 3,
         "nombre": "Live at the Greek (Vinilo doble firmado)",
         "precio": 45,
-        "imagen": "./src/assets/LiveAtTheGreekVinyl.png",
+        "imagen": "/src/assets/LiveAtTheGreekVinyl.png",
         "descripcion": "Doble LP firmado por Ross y Rocky",
-        "stock": 10
+        "stock": 10,
+        "category": "musica"
     },
     {
         "ID": 4,
         "nombre": "Summer Mixtape (CD)",
         "precio": 15,
-        "imagen": "./src/assets/SummerMixtapeCD.png",
+        "imagen": "/src/assets/SummerMixtapeCD.png",
         "descripcion": "Tercer álbum de la banda, lanzado el 16 de Septiembre de 2022",
-        "stock": 30
+        "stock": 30,
+        "category": "musica"
     },
     {
         "ID": 5,
         "nombre": "Summer Mixtape (Vinilo)",
         "precio": 30,
-        "imagen": "./src/assets/SummerMixtapeVinyl.png",
+        "imagen": "/src/assets/SummerMixtapeVinyl.png",
         "descripcion":"Tercer álbum de la banda, lanzado el 16 de Septiembre de 2022",
-        "stock": 20
+        "stock": 20,
+        "category": "musica"
     },
     {
         "ID": 6,
         "nombre": "Summer Mixtape (Cassette)",
         "precio": 15,
-        "imagen": "./src/assets/SummerMixtapeCassette.png",
+        "imagen": "/src/assets/SummerMixtapeCassette.png",
         "descripcion":"Tercer álbum de la banda, lanzado el 16 de Septiembre de 2022",
-        "stock": 5
+        "stock": 5,
+        "category": "musica"
     },
     {
         "ID": 7,
         "nombre": "Malibu",
         "precio": 5,
-        "imagen": "./src/assets/MalibuCDSingle.png",
+        "imagen": "/src/assets/MalibuCDSingle.png",
         "descripcion":"Sencillo en CD",
-        "stock": 3
+        "stock": 3,
+        "category": "musica"
     },
     {
         "ID": 8,
         "nombre": "Girlfriend (CD)",
         "precio": 15,
-        "imagen": "./src/assets/GirlfriendCD.png",
+        "imagen": "/src/assets/GirlfriendCD.png",
         "descripcion":"Segundo álbum de la banda, lanzado el 15 de Octubre de 2021",
-        "stock": 2
+        "stock": 2,
+        "category": "musica"
     },
     {
         "ID": 9,
         "nombre": "Poster Tour Norte América 2024",
         "precio": 10,
-        "imagen": "./src/assets/PosterTour2024.png",
+        "imagen": "/src/assets/PosterTour2024.png",
         "descripcion":"Medidas: 30 x 45 cm. NO SE ACEPTAN DEVOLUCIONES DE ESTE PRODUCTO",
-        "stock": 20
+        "stock": 20,
+        "category": "merch"
+    },
+    {
+        "ID": 10,
+        "nombre": "Buzo negro Tour 2024",
+        "precio": 40,
+        "imagen": "/src/assets/BuzoTour2024.jpg",
+        "descripcion":"Modelo único. NO SE ACEPTAN DEVOLUCIONES DE ESTE PRODUCTO",
+        "stock": 35,
+        "category": "merch"
+    },
+    {
+        "ID": 11,
+        "nombre": "Remera Live on Tour 2024 (Sudamérica)",
+        "precio": 20,
+        "imagen": "/src/assets/RemeraTour2024.png",
+        "descripcion":"Incluye las fechas de la gira Sudamericana en la espalda. NO SE ACEPTAN DEVOLUCIONES DE ESTE PRODUCTO",
+        "stock": 10,
+        "category": "merch"
+    },
+    {
+        "ID": 12,
+        "nombre": "Remera Ross y Rocky",
+        "precio": 20,
+        "imagen": "/src/assets/Remera2Tour2024.jpg",
+        "descripcion":"Diseño black and white. NO SE ACEPTAN DEVOLUCIONES DE ESTE PRODUCTO",
+        "stock": 15,
+        "category": "merch"
+    },
+    {
+        "ID": 13,
+        "nombre": "Tote bag",
+        "precio": 10,
+        "imagen": "/src/assets/TotebagTour2024.png",
+        "descripcion":"Bolsa ecológica. NO SE ACEPTAN DEVOLUCIONES DE ESTE PRODUCTO",
+        "stock": 15,
+        "category": "merch"
     }
 ]

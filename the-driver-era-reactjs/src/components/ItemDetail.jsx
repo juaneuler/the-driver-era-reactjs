@@ -13,8 +13,8 @@ const ItemDetail = ({ producto }) => {
             <img src={producto.imagen} />
             <h2>{producto.nombre}</h2>
             <h2>Unidades disponibles: {producto.stock}</h2>
-            <h3>U$D {producto.precio}</h3>
-            <h4>{producto.descripcion}</h4>
+            <h3>Precio: U$D {producto.precio}</h3>
+            <h4>Descripción: {producto.descripcion}</h4>
             <ItemCount inicial={1} stock={stock} onAdd={(cantidad) => console.log("La cantidad agregada es ", cantidad)}/>
         </div>
     )

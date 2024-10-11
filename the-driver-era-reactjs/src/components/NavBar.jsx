@@ -10,14 +10,39 @@ import brandIcon from '../assets/brandIcon.jpg'
 
 // Importación del componente carrito
 import CartWidget from './CartWidget'
+import { NavLink } from 'react-router-dom'
 
 const NavBar = () => {
     return (
         <div className="navbar">
-            <img src={brandIcon} alt='logo' style={{ width: 80 }} />
+            <NavLink to={"/"}>
+                <img src={brandIcon} alt='logo' style={{ width: 80 }} />
+            </NavLink>
             <ul>
-                <li>Merch Tour 2024</li>
-                <li>Musica</li>
+                <li>
+                    <NavLink
+                        className={({ isActive }) => (isActive ? 'isActive' : 'notActive')}
+                        to={"/"}
+                    >
+                        Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        className={({ isActive }) => (isActive ? 'isActive' : 'notActive')}
+                        to={"/category/merch"}
+                    >
+                        Merch Tour 2024
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        className={({ isActive }) => (isActive ? 'isActive' : 'notActive')}
+                        to={"/category/musica"}
+                    >
+                        Música
+                    </NavLink>
+                </li>
                 <CartWidget />
             </ul>
         </div>
