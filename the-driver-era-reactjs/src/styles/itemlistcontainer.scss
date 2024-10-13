@@ -1,5 +1,40 @@
 div {
     text-align: center;
+
+    .contenedorEncabezados {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        h1 {
+            font-size: 40px;
+            font-style: italic;
+            background-color: #222831;
+            text-align: center;
+            display: inline-block;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+    
+        h2 {
+            font-size: 30px;
+            background-color: #222831;
+            text-align: center;
+            display: inline-block;
+            padding: 20px;
+            border-radius: 20px;
+        }
+    }
+
+    a {
+        .fotoPortada {
+            border-radius: 20px;
+            margin: 20px;
+        }
+    }
+
     h1 {
         font-size: 40px;
         font-style: italic;
@@ -8,5 +43,7 @@ div {
         display: inline-block;
         padding: 20px;
         border-radius: 20px;
+        margin-bottom: 20px;
     }
+    
 }
