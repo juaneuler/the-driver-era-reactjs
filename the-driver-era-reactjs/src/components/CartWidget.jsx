@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 // Imagen del carrito
-import cart from '../assets/cart.svg'
+import carritoImagen from '../assets/cart.svg'
 
 //Hoja de estilos
 import '../styles/cartwidget.scss'
 
+// Contexto
+import { Cart } from '../context/CartProvider'
+import { NavLink } from 'react-router-dom'
+
+
 const CartWidget = () => {
+
+    const {carrito} = useContext(Cart)
+
+    const cantidadTotal = carrito.reduce((acumulador, item) => acumulador + item.cantidad, 0)
+
     return (
-        <div className="cartWidget">
-            <img src={cart} alt='carrito' style={{ width: 40 }} />
-            <span>(4)</span>
-        </div>
+        <>
+        {cantidadTotal > 0 ? (
+        <NavLink to="/cart" className="cartWidget">
+            <img src={carritoImagen} alt="carrito" style={{width: 40}} />
+            <span>({cantidadTotal})</span>
+        </NavLink>
+        ) : null}
+        </>
     )
 }
 

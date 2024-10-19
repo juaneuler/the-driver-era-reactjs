@@ -4,4 +4,15 @@
     align-items: center;
     flex-direction: column;
     margin: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: color 1s;
+
+    &:hover {
+        color: orangered;
+    }
+
+    img {
+        filter: invert(1);
+    }
 }

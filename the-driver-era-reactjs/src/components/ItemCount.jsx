@@ -26,7 +26,7 @@ const ItemCount = ({stock, inicial, onAdd}) => {
     <div className='contenedorDelContador'>
         <div className='contenedorDeBotones'>
             <button className='boton' onClick={reducirCantidad}> - </button>
-            <h4 className='cantidadDelProducto'>{cantidad}</h4>
+            <h4 className='cantidadDelProducto'>Unidades: {cantidad}</h4>
             <button className='boton' onClick={aumentarCantidad}> + </button>
         </div>
         <div>
