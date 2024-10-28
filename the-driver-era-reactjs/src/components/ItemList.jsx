@@ -13,7 +13,7 @@ const ItemList = ({ productos }) => {
     <div className='contenedorDeTarjetas'>
       {productos.map((producto => {
         return (
-          <Item item={producto} key={producto.ID} />
+          <Item item={producto} key={producto.id} />
         )
       }))
       }

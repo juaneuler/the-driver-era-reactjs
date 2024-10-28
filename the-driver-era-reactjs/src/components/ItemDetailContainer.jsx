@@ -1,51 +1,46 @@
 import React, { useEffect, useState } from 'react'
-
-// Array de productos
-import arrayDeProductos from "../assets/productos.json"
+import { useParams } from 'react-router-dom'
+import { db } from "../firebase/config"
+import { doc, getDoc } from "firebase/firestore";
 
 import ItemDetail from './ItemDetail'
 
 // Hoja de estilos
 import "../styles/itemdetailcontainer.scss"
 
-import { useParams } from 'react-router-dom'
 
 const ItemDetailContainer = () => {
 
   // Estado para productos y useParams
 
   const { id } = useParams()
-  const [producto, setProducto] = useState([null])
+  console.log("El ID es", id);
+  const [producto, setProducto] = useState(null)
   const [cargando, setCargando] = useState(true)
-
-
-  // Promesa para obtener el producto
-
-  const obtenerProducto = (ID) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(arrayDeProductos.find(producto => producto.ID === parseInt(ID)));
-      }, 2000);
-    });
-  }
 
   //Efecto para encontrar cada producto
 
   useEffect(() => {
+      (async () => {
 
-    setCargando(true)
+        setCargando(true)
 
-    if (id) {
-      obtenerProducto(id).then(response => {
-        setProducto(response)
-        setCargando(false)
-      }).catch(error => {
-        console.log(error);
-        setCargando(false)
-      })
-    } else {
-      setCargando(false)
-    }
+        try {
+          const docRef = doc(db, "productos", id);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            console.log("Data del documento:", docSnap.data());
+            setProducto({...docSnap.data(), id})
+          } else {
+            console.log("No se encontró el documento");
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setCargando(false)
+        }
+      })();
   }, [id])
 
   // Retorno el producto seleccionado
@@ -55,7 +50,7 @@ const ItemDetailContainer = () => {
       <h1>Aguarde mientras se carga la vista del producto...</h1>
     ) : (
       <div className='contenedorDeTarjeta'>
-        <ItemDetail producto={producto} />
+        {producto ? <ItemDetail producto={producto} /> : <h1>Producto no encontrado</h1>}
       </div>
     )}
     </>

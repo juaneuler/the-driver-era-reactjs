@@ -1,0 +1,61 @@
+.contenedorCheckout {
+    height: 68vh;
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        padding: 20px;
+    }
+
+    h3 {
+        padding: 20px;
+    }
+
+    h4 {
+        padding: 10px;
+    }
+
+    .contenedorFormulario {
+        h2 {
+            color: #222831;
+            background-color: white;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 10px;
+            display: inline;
+            padding: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+
+            input {
+                margin: 10px;
+                font-size: 20px;
+            }
+
+            .botonSubmitFormulario {
+                cursor: pointer;
+                background-color: white;
+                color: black;
+                border-radius: 10px;
+                padding: 5px;
+                font-size: 20px;
+                margin: 10px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+
+                &:active {
+                    background-color: wheat;
+                }
+            }
+        }
+    }
+
+}

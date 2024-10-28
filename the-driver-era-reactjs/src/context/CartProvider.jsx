@@ -1,5 +1,8 @@
 import { createContext, useState } from "react";
 
+// Importación de la librería de Sweet Alert
+import Swal from "sweetalert2";
+
 export const Cart = createContext()
 
 const CartProvider = ({children}) => {
@@ -8,7 +11,7 @@ const CartProvider = ({children}) => {
     const [cantidad, setCantidad] = useState(0)
 
     const addToCart = (producto, cantidadProducto) => {
-        const productoEnElCarrito = existeEnElCarrito(producto.ID)
+        const productoEnElCarrito = existeEnElCarrito(producto.id)
         console.log(productoEnElCarrito);
         console.log(cantidadProducto);
         
@@ -17,7 +20,7 @@ const CartProvider = ({children}) => {
 
         if(productoEnElCarrito){
             carritoActualizado = carrito.map(productoCarrito => {
-                if(productoCarrito.ID === producto.ID){
+                if(productoCarrito.id === producto.id){
                     return {
                         ...productoCarrito, cantidad: productoCarrito.cantidad + cantidadProducto
                     }
@@ -32,17 +35,57 @@ const CartProvider = ({children}) => {
     }
 
     const existeEnElCarrito = (productoID) => {
-        return carrito.some(productoCarrito => productoCarrito.ID === productoID)
+        return carrito.some(productoCarrito => productoCarrito.id === productoID)
     }
 
     const eliminarProducto = (productoID) => {
-        const carritoActualizado = carrito.filter(producto => producto.ID !== productoID)
-        setCarrito(carritoActualizado)
-    }
+        console.log("ID del producto a eliminar:", productoID);
+        Swal.fire({
+            title: "Estás seguro que deseas eliminar este producto del carrito?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si",
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log("Carrito antes de la eliminación:", carrito);
+                const carritoActualizado = carrito.filter(producto => producto.id !== productoID);
+                console.log("Carrito después de la eliminación:", carritoActualizado);
+                setCarrito(carritoActualizado);
+                Swal.fire({
+                    title: "Eliminado!",
+                    text: "Producto eliminado del carrito",
+                    icon: "success",
+                });
+            }
+        });
+    };
 
-    const vaciarCarrito = () => {
-        setCarrito([])
-    }
+    const vaciarCarrito = (mostrarAlerta = true) => {
+        if (mostrarAlerta) {
+            Swal.fire({
+                title: "Estás seguro que quieres vaciar el carrito?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí",
+                cancelButtonText: "No",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setCarrito([]);
+                    Swal.fire({
+                        title: "Se vació el carrito!",
+                        icon: "success",
+                    });
+                }
+            });
+        } else {
+            setCarrito([]);
+        }
+    };
 
     return (
         <Cart.Provider value={{carrito, addToCart, eliminarProducto, vaciarCarrito, cantidad}}>{children}</Cart.Provider>

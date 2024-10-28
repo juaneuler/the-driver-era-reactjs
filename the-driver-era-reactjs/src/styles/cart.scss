@@ -12,6 +12,11 @@
         font-size: 20px;
         margin: 10px;
         text-decoration: none;
+        transition: background-color 0.3s;
+
+        &:active {
+            background-color: wheat;
+          }
     }
 
     .botonVaciar {
@@ -23,6 +28,11 @@
         font-size: 20px;
         margin: 10px;
         text-decoration: none;
+        transition: background-color 0.3s;
+
+        &:active {
+            background-color: wheat;
+          }
     }
 
     .botonCheckout {
@@ -34,5 +44,10 @@
         font-size: 20px;
         margin: 10px;
         text-decoration: none;
+        transition: background-color 0.3s;
+
+        &:active {
+            background-color: wheat;
+          }
     }
 }

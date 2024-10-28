@@ -1,19 +1,22 @@
 // Componente contenedor
 
 import React, { useState, useEffect } from 'react'
-
-// Array de productos
-import arrayDeProductos from "../assets/productos.json"
+import { db } from "../firebase/config"
+import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import { useParams } from 'react-router-dom'
 
 // Importación del componente Portada
 import Portada from './Portada';
+
+// Importación del componente para mostrar mi otro sitio web
+import WebOficial from './WebOficial';
 
 // Importación del componente Item List
 import ItemList from './ItemList'
 
 // Hoja de estilos
 import "../styles/itemlistcontainer.scss"
-import { useParams } from 'react-router-dom'
+
 
 
 const ItemListContainer = () => {
@@ -26,36 +29,39 @@ const ItemListContainer = () => {
   // Parámetros
   const { categoryId } = useParams()
 
-  // Emulo la carga de productos con setTimeOut
-
-  const fetchProductos = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(arrayDeProductos)
-      }, 2000);
-    })
-  }
-
-  // Resolución de la promesa y filtrado por categorías. También hago uso de la pantalla de carga
+  // Filtrado por categorías. También hago uso de la pantalla de carga
 
   useEffect(() => {
 
     setCargando(true)
 
-    fetchProductos().then((productosCargados) => {
+      ; (async () => {
+        try {
+          let productosFiltrados = [];
 
-      let productosFiltrados = [];
+          if (categoryId) {
+            const q = query(collection(db, "productos"), where("category", "==", categoryId), orderBy("orden"));
 
-      if (categoryId) {
-        productosFiltrados = productosCargados.filter(producto => producto.category === categoryId);
-        setProductos(productosFiltrados);
-      } else {
-        productosFiltrados = productosCargados;
-      }
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+              console.log(doc.id, " => ", doc.data());
+              productosFiltrados.push({ id: doc.id, ...doc.data() })
+            });
+          } else {
+            const querySnapshot = await getDocs(collection(db, "productos"), orderBy("orden"));
+            querySnapshot.forEach((doc) => {
+              console.log(`${doc.id} => ${doc.data()}`);
+              productosFiltrados.push({ id: doc.id, ...doc.data() })
+            });
+          }
+          setProductos(productosFiltrados)
 
-      setProductos(productosFiltrados)
-      setCargando(false)
-    });
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setCargando(false)
+        }
+      })();
   }, [categoryId])
 
 
@@ -69,6 +75,7 @@ const ItemListContainer = () => {
           {!categoryId && <Portada />}
           <h1>THE DRIVER ERA - SHOP</h1>
           <ItemList productos={productos} />
+          {!categoryId && <WebOficial/>}
         </div>
       )}
     </>

@@ -1,11 +1,28 @@
-.footer {
+footer {
     background-color: black;
     text-align: center;
 
-    p {
-        margin: 0;
-        padding: 10px;
-        color: white;
-        font-style: italic;
+    div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+        width: 40%;
+
+        a {
+            font-size: 40px;
+            color: white;
+            transition: color 0.5s;
+
+            &:hover {
+                color: green;
+            }
+        }
+
+        p {
+            margin: 0;
+            padding: 10px;
+            color: white;
+        }
     }
 }

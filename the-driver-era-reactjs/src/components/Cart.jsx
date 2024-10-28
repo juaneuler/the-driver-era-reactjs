@@ -18,12 +18,12 @@ const Cart = () => {
             <h1>PRODUCTOS</h1>
             {carrito.length ? (
                 <>
-                {carrito.map((itemCarrito) => (
-                    <CartItem item={itemCarrito} key={itemCarrito.ID} eliminarProducto={eliminarProducto} />
-                ))}
-                <button onClick={vaciarCarrito} className="botonVaciar">Vaciar carrito</button>
-                <h2>TOTAL: U$D {precioTotal.toFixed(2)}</h2>
-                <NavLink to="/checkout" className="botonCheckout">FINALIZAR COMPRA</NavLink>
+                    {carrito.map((itemCarrito) => (
+                        <CartItem item={itemCarrito} key={itemCarrito.id} eliminarProducto={eliminarProducto} />
+                    ))}
+                    <button onClick={vaciarCarrito} className="botonVaciar">Vaciar carrito</button>
+                    <h2>TOTAL: U$D {precioTotal.toFixed(2)}</h2>
+                    <NavLink to={"/checkout"} className="botonCheckout">FINALIZAR COMPRA</NavLink>
                 </>
             ) : (
                 <>
@@ -35,4 +35,5 @@ const Cart = () => {
         </div>
     )
 }
+
 export default Cart
