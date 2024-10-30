@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Cart as ContextoCarrito } from '../context/CartProvider';
 import { db } from "../firebase/config"
 import { collection, addDoc, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
+import Swal from 'sweetalert2'
 
 // Hoja de estilos
 import "../styles/checkout.scss"
@@ -11,20 +12,36 @@ const Checkout = () => {
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
     const [email, setEmail] = useState('');
+    const [confirmarEmail, setConfirmarEmail] = useState('');
+    const [telefono, setTelefono] = useState('')
     const [domicilio, setDomicilio] = useState('');
     const [ordenId, setOrdenId] = useState(null);
+    const [estadoOrden, setEstadoOrden] = useState('generada')
     const [cargando, setCargando] = useState(false);
 
     const manejarSubmit = async (evento) => {
         evento.preventDefault();
+
+        // Verificamos que los emails coincidan antes de generar la orden
+        if (email !== confirmarEmail) {
+            Swal.fire({
+                title: "Error!",
+                text: "Los emails ingresados no coinciden",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+            return
+        }
+
         setCargando(true)
 
         // Genero la orden para después mandarla a Firestore
         const nuevaOrden = {
-            buyer: { nombre, apellido, email, domicilio },
+            buyer: { nombre, apellido, email, telefono, domicilio },
             items: carrito,
             total: carrito.reduce((acumulador, item) => acumulador + item.precio * item.cantidad, 0),
-            timestamp: serverTimestamp()
+            timestamp: serverTimestamp(),
+            estado: estadoOrden
         };
 
         try {
@@ -39,7 +56,12 @@ const Checkout = () => {
 
             vaciarCarrito(false);
         } catch (error) {
-            console.error("Error al crear la orden: ", error);
+            Swal.fire({
+                title: "Error!",
+                text: "Ocurrió un error al crear la orden: " + error.message,
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
         } finally {
             setCargando(false)
         }
@@ -50,13 +72,12 @@ const Checkout = () => {
             <h1>FINALIZAR COMPRA</h1>
             {cargando ? (
                 <div>
-                <h2>Aguarde mientras se genera su orden...</h2>
+                    <h2>Aguarde mientras se genera su orden...</h2>
                 </div>
             ) : ordenId ? (
                 <div>
                     <h2>Gracias por tu compra! La orden es número: {ordenId}</h2>
-                    <h3>En tu e-mail recibirás el comprobante de la operación</h3>
-                    <h4>Una vez que tus productos estén listos para ser despachados, recibirás el número de seguimiento</h4>
+                    <h3>Una vez que tus productos estén listos para ser despachados, recibirás el número de seguimiento</h3>
                 </div>
             ) : (
                 <div className='contenedorFormulario'>
@@ -81,6 +102,20 @@ const Checkout = () => {
                             placeholder="Email"
                             value={email}
                             onChange={(evento) => setEmail(evento.target.value)}
+                            required
+                        />
+                        <input
+                            type="email"
+                            placeholder="Confirmar Email"
+                            value={confirmarEmail}
+                            onChange={(evento) => setConfirmarEmail(evento.target.value)}
+                            required
+                        />
+                        <input
+                            type="tel"
+                            placeholder="Teléfono"
+                            value={telefono}
+                            onChange={(evento) => setTelefono(evento.target.value)}
                             required
                         />
                         <input

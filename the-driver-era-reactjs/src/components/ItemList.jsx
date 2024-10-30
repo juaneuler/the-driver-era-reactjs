@@ -9,6 +9,11 @@ import Item from './Item'
 import "../styles/itemlist.scss"
 
 const ItemList = ({ productos }) => {
+
+  if (productos.length === 0) {
+    return <h1>No se encontraron productos</h1>;
+  }
+
   return (
     <div className='contenedorDeTarjetas'>
       {productos.map((producto => {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { Cart as ContextoCarrito } from '../context/CartProvider'
 import { NavLink } from 'react-router-dom'
 import CartItem from './CartItem';
@@ -9,10 +9,11 @@ import "../styles/cart.scss"
 const Cart = () => {
 
     const { carrito, vaciarCarrito, eliminarProducto } = useContext(ContextoCarrito)
-    console.log({ carrito });
 
-    const precioTotal = carrito.reduce((acumulador, item) => acumulador + item.precio * item.cantidad, 0)
-
+    const precioTotal = useMemo(() => {
+        return carrito.reduce((acumulador, item) => acumulador + item.precio * item.cantidad, 0)
+    }, [carrito]) 
+    
     return (
         <div className='contenedorCarrito'>
             <h1>PRODUCTOS</h1>

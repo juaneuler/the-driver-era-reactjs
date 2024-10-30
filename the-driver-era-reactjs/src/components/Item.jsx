@@ -10,7 +10,7 @@ import "../styles/item.scss"
 const Item = ({item}) => {
   return (
     <div className='contenedorCartaProducto'>
-        <img src={item.imagen} alt={item.nombre}/>
+        <img src={item.imagen} alt={`Foto de ${item.nombre}`}/>
         <h2>{item.nombre}</h2>
         <h3>U$D {item.precio}</h3>
         <NavLink to={`/detail/${item.id}`}>

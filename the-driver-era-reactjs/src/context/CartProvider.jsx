@@ -12,9 +12,6 @@ const CartProvider = ({children}) => {
 
     const addToCart = (producto, cantidadProducto) => {
         const productoEnElCarrito = existeEnElCarrito(producto.id)
-        console.log(productoEnElCarrito);
-        console.log(cantidadProducto);
-        
 
         let carritoActualizado = [...carrito]
 
@@ -39,7 +36,6 @@ const CartProvider = ({children}) => {
     }
 
     const eliminarProducto = (productoID) => {
-        console.log("ID del producto a eliminar:", productoID);
         Swal.fire({
             title: "Estás seguro que deseas eliminar este producto del carrito?",
             icon: "warning",
@@ -50,9 +46,7 @@ const CartProvider = ({children}) => {
             cancelButtonText: "No"
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log("Carrito antes de la eliminación:", carrito);
                 const carritoActualizado = carrito.filter(producto => producto.id !== productoID);
-                console.log("Carrito después de la eliminación:", carritoActualizado);
                 setCarrito(carritoActualizado);
                 Swal.fire({
                     title: "Eliminado!",
