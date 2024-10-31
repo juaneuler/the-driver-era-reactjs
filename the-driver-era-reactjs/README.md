@@ -11,11 +11,19 @@ Este proyecto es un E-commerce basado en los productos de la banda The Driver Er
 
 ## Uso
 
-Los usuarios pueden navegar y ver productos, filtar por categoría, agregarlos al carrito, y realizar compras. El método de confirmación es mediante SweetAlert2.
+Los usuarios pueden navegar y ver productos, filtrar por categoría, agregarlos al carrito, y realizar compras. El método de confirmación es mediante SweetAlert2.
 
-Los productos se renderizan desde el array almacenaro en Firestore. La colección es "productos".
+Los productos se renderizan desde el array almacenado en Firestore. La colección es "productos".
 
 Cuando se genere una orden, se enviará a la colección de Firestore llamada "órdenes".
+
+
+### Características
+
+- Navegación entre productos.
+- Filtros por categoría.
+- Sistema de carrito.
+- Confirmaciones de compra.
 
 
 ## Tecnologías usadas
@@ -38,7 +46,7 @@ https://thedrivererashop.netlify.app/
 Servidor utilizado: Netlify
 
 
-## Para ver el proyecto localmente
+## Para ver el proyecto localmente (se necesita tener Node Js instalado para ejecutar los comandos de NPM)
 
 1) Clonar el repositorio
 git clone https://github.com/juaneuler/the-driver-era-reactjs
