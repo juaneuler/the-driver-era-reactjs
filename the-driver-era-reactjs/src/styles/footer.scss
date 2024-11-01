@@ -26,3 +26,21 @@ footer {
         }
     }
 }
+
+// MEDIA QUERIES
+
+@media screen and (max-width:523px) {
+    footer {
+        div {
+            width: 60%;
+        }
+    }
+}
+
+@media screen and (max-width:369px) {
+    footer {
+        div {
+            width: 80%;
+        }
+    }
+}

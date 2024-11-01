@@ -45,3 +45,28 @@
           }
     }
 }
+
+
+// MEDIA QUERIES
+
+@media screen and (max-width:1054px) {
+    .contenedorCartaProducto {
+        width: 400px;
+
+        img {
+            width: 250px;
+            height: 250px;
+        }
+    }
+}
+
+@media screen and (max-width:880px) {
+    .contenedorCartaProducto {
+        width: 300px;
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    }
+}

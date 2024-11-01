@@ -90,3 +90,49 @@
         }
     }
 }
+
+// MEDIA QUERIES
+
+@media screen and (max-width: 865px) {
+    .contenedorCartaProductoIndividual {
+        img {
+            width: 400px;
+            height: 400px;
+        }
+
+        .contenedorDescripcion {
+            .tracklist {
+                ol {
+                    width: 70%;
+
+                    li {
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 675px) {
+    .contenedorCartaProductoIndividual {
+        .contenedorDescripcion {
+            h3 {
+                font-size: 25px;
+            }
+
+            h4 {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 457px) {
+    .contenedorCartaProductoIndividual {
+        img {
+            width: 300px;
+            height: 300px;
+        }
+    }
+}

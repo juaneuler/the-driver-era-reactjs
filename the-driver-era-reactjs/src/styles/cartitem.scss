@@ -3,7 +3,6 @@
     grid-template-columns: 1fr 1.5fr 2fr repeat(3, 0.5fr);
     grid-column-gap: 20px;
     padding: 15px;
-    align-items: flex-start;
     text-align: center;
     align-items: center;
     background-color: black;
@@ -29,6 +28,52 @@
 
         &:active {
             background-color: wheat;
-          }
+        }
+    }
+}
+
+
+// MEDIA QUERIES
+
+@media screen and (max-width: 1165px) {
+    .contenedorCartItem {
+        grid-template-columns: 1fr 1fr 2fr repeat(3, 0.5fr);
+        grid-column-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .contenedorCartItem {
+        h3 {
+            font-size: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .contenedorCartItem {
+        grid-column-gap: 20px;
+    }
+}
+
+@media screen and (max-width: 805px) {
+    .contenedorCartItem {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 541px) {
+    .contenedorCartItem {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 403px) {
+    .contenedorCartItem {
+        grid-template-columns: 1fr;
+
+        img {
+            margin: 0 auto;
+        }
     }
 }

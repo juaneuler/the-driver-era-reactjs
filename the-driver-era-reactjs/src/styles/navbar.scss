@@ -43,3 +43,36 @@
         }
     }
 }
+
+
+// MEDIA QUERIES
+
+@media screen and (max-width:617px) {
+    .navbar {
+        ul {
+            li {
+                a {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:536px) {
+    .navbar {
+        ul {
+            li {
+                a {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:473px) {
+    .navbar {
+        flex-direction: column;
+    }
+}

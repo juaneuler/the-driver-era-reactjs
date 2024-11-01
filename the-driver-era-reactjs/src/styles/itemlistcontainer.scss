@@ -80,3 +80,148 @@ h1 {
     border-radius: 20px;
     margin-bottom: 20px;
 }
+
+
+// MEDIA QUERIES
+
+@media screen and (max-width:1329px) {
+    .contenedorEncabezados {
+        a {
+            .fotoPortada {
+                width: 80%;
+            }
+        }
+    }
+
+    .contenedorWeb {
+        a {
+            .fotoWeb {
+                width: 80%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1080px) {
+    .contenedorEncabezados {
+        a {
+            .fotoPortada {
+                width: 75%;
+            }
+        }
+    }
+
+    .contenedorWeb {
+        a {
+            .fotoWeb {
+                width: 75%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:885px) {
+    div {
+        .contenedorEncabezados {
+            h1 {
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        .contenedorWeb {
+            h1 {
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:672px) {
+    div {
+        .contenedorEncabezados {
+            h1 {
+                font-size: 25px;
+            }
+
+            h2 {
+                font-size: 15px;
+            }
+        }
+
+        h1 {
+            font-size: 25px;
+        }
+
+        h2 {
+            font-size: 15px;
+        }
+
+        .contenedorWeb {
+            h1 {
+                font-size: 25px;
+            }
+
+            h2 {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:581px) {
+    div {
+        .contenedorEncabezados {
+            h1 {
+                font-size: 20px;
+            }
+
+            h2 {
+                font-size: 15px;
+            }
+        }
+
+        h1 {
+            font-size: 20px;
+        }
+
+        h2 {
+            font-size: 15px;
+        }
+
+        .contenedorWeb {
+            h1 {
+                font-size: 20px;
+            }
+
+            h2 {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:448px) {
+    div {
+        .contenedorEncabezados {
+            h1 {
+                font-size: 15px;
+            }
+        }
+    }
+}
