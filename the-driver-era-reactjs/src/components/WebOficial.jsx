@@ -6,8 +6,8 @@ const WebOficial = () => {
         <div className='contenedorWeb'>
             <h1>THE DRIVER ERA - SITIO OFICIAL</h1>
             <h2>Conocé más de la banda</h2>
-            <a href="https://juaneuler-thedriverera.netlify.app/" target="_blank" rel="noopener noreferrer">
-                <img src={fotoWeb} alt="Foto de Ross y Rocky" className='fotoWeb animate__animated animate__fadeInUp'/>
+            <a href="https://thedriverera.netlify.app/" target="_blank" rel="noopener noreferrer">
+                <img src={fotoWeb} alt="Foto de Ross y Rocky" className='fotoWeb animate__animated animate__fadeInUp' />
             </a>
         </div>
     )

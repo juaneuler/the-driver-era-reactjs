@@ -6,7 +6,11 @@ Este proyecto es un E-commerce basado en los productos de la banda The Driver Er
 
 ## Autor
 
-- [@Juan Euler](https://github.com/juaneuler)
+**Juan Euler**
+
+- Git Hub: https://github.com/juaneuler
+
+- LinkedIn: https://www.linkedin.com/in/juan-euler/
 
 
 ## Uso
