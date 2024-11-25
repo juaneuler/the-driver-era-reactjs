@@ -7,6 +7,10 @@ import Swal from 'sweetalert2'
 // Hoja de estilos
 import "../styles/checkout.scss"
 
+// Componente para los inputs
+import InputFormulario from './InputFormulario';
+
+
 const Checkout = () => {
     const { carrito, vaciarCarrito } = useContext(ContextoCarrito);
     const [nombre, setNombre] = useState('');
@@ -31,6 +35,17 @@ const Checkout = () => {
                 confirmButtonText: "Aceptar"
             });
             return
+        }
+
+        // Verificamos que en el campo "Teléfono" se ingresen solamente números antes de generar la orden
+        if (!telefono || telefono.length < 10 || isNaN(telefono)) {
+            Swal.fire({
+                title: "Error!",
+                text: "Por favor, ingrese un número de teléfono válido (solo números y los 10 dígitos sin el 0 al principio)",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+            return;
         }
 
         setCargando(true)
@@ -83,42 +98,42 @@ const Checkout = () => {
                 <div className='contenedorFormulario'>
                     <h2>Ingrese sus datos de facturación</h2>
                     <form onSubmit={manejarSubmit}>
-                        <input
+                        <InputFormulario
                             type="text"
                             placeholder="Nombre"
                             value={nombre}
                             onChange={(evento) => setNombre(evento.target.value)}
                             required
                         />
-                        <input
+                        <InputFormulario
                             type="text"
                             placeholder="Apellido"
                             value={apellido}
                             onChange={(evento) => setApellido(evento.target.value)}
                             required
                         />
-                        <input
+                        <InputFormulario
                             type="email"
                             placeholder="Email"
                             value={email}
                             onChange={(evento) => setEmail(evento.target.value)}
                             required
                         />
-                        <input
+                        <InputFormulario
                             type="email"
                             placeholder="Confirmar Email"
                             value={confirmarEmail}
                             onChange={(evento) => setConfirmarEmail(evento.target.value)}
                             required
                         />
-                        <input
+                        <InputFormulario
                             type="tel"
                             placeholder="Teléfono"
                             value={telefono}
                             onChange={(evento) => setTelefono(evento.target.value)}
                             required
                         />
-                        <input
+                        <InputFormulario
                             type="text"
                             placeholder="Domicilio"
                             value={domicilio}

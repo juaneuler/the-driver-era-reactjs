@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ignorar el archivo ENV
+.env
+
+# Ignorar la carpeta Firebase para que no aparezcan las credenciales en el repositorio
+src/firebase/
