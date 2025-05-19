@@ -6,7 +6,7 @@ import React from 'react'
 import '../styles/navbar.scss'
 
 // Ícono de la tienda
-import brandIcon from '../assets/brandIcon.jpg'
+import brandIcon from '../assets/brandIcon.png'
 
 // Importación del componente carrito
 import CartWidget from './CartWidget'
@@ -16,7 +16,7 @@ const NavBar = () => {
     return (
         <div className="navbar">
             <NavLink to={"/"}>
-                <img src={brandIcon} alt='logo' style={{ width: 80 }} />
+                <img src={brandIcon} className='logo' alt='logo' style={{ width: 140 }} />
             </NavLink>
             <ul>
                 <li>

@@ -1,138 +1,147 @@
 .contenedorCartaProductoIndividual {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #222831;
-    border: 2px green solid;
-    border-radius: 20px;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 20px auto;
+    padding: 30px 20px;
+    background-color: white;
+    border: 2px solid green;
+    width: 95%;
+
+    img {
+        width: 400px;
+        height: 400px;
+        object-fit: contain;
+        border-radius: 15px;
+        background: white;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
 
     .contenedorDescripcion {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
         width: 100%;
+
+        h2,
+        h3,
+        h4 {
+            margin: 0 0 10px 0;
+        }
 
         h2 {
             color: #222831;
-            background-color: white;
-            border-radius: 10px;
-            padding: 5px;
-            margin-bottom: 10px;
+            background: none;
+            font-size: 32px;
+            font-weight: bold;
+            padding: 0;
         }
 
         h3 {
+            color: #222831;
             font-size: 30px;
-            margin-bottom: 10px;
         }
-
-        h4 {
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-    }
-
-    img {
-        width: 600px;
-        height: 600px;
-    }
-
-    .tracklist {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
         h4 {
             color: #222831;
-            background-color: white;
-            border-radius: 10px;
-            padding: 5px;
+            font-size: 1.1rem;
+        }
+    }
+
+    .tracklist {
+        margin-top: 10px;
+
+        h4 {
+            color: #222831;
+            background: none;
+            font-size: 1rem;
         }
 
         ol {
+            margin: 0 0 0 20px;
+
             li {
-                font-size: 20px;
-                margin: 5px;
+                font-size: 1rem;
+                color: #222831;
             }
         }
     }
 
-    .botonIrAlCarrito {
-        cursor: pointer;
-        background-color: white;
-        color: black;
-        border-radius: 10px;
-        padding: 5px;
-        font-size: 20px;
-        margin: 10px;
-        text-decoration: none;
-        transition: background-color 0.3s;
+    .accionesProducto {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin: 15px 0;
+        width: 100%;
 
-        &:active {
-            background-color: wheat;
+        @media screen and (max-width: 900px) {
+            align-items: center;
         }
-    }
 
-    .botonVolverHome {
-        cursor: pointer;
-        background-color: white;
-        color: black;
-        border-radius: 10px;
-        padding: 5px;
-        font-size: 20px;
-        margin: 10px;
-        text-decoration: none;
-        transition: background-color 0.3s;
+        .botonIrAlCarrito,
+        .botonVolverHome {
+            display: inline-block;
+            padding: 10px 22px;
+            margin: 8px 8px 0 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            background-color: #222831;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 
-        &:active {
-            background-color: wheat;
+            &:hover {
+                background-color: #11151a;
+                color: #00ff99;
+                box-shadow: 0 2px 8px rgba(34, 40, 49, 0.15);
+            }
         }
     }
 }
 
 // MEDIA QUERIES
-
-@media screen and (max-width: 865px) {
+@media screen and (max-width: 900px) {
     .contenedorCartaProductoIndividual {
-        img {
-            width: 400px;
-            height: 400px;
-        }
+        flex-direction: column;
+        align-items: center;
 
-        .contenedorDescripcion {
-            .tracklist {
-                ol {
-                    width: 70%;
-
-                    li {
-                        font-size: 15px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 675px) {
-    .contenedorCartaProductoIndividual {
-        .contenedorDescripcion {
-            h3 {
-                font-size: 25px;
-            }
-
-            h4 {
-                font-size: 15px;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 457px) {
-    .contenedorCartaProductoIndividual {
         img {
             width: 300px;
             height: 300px;
+        }
+
+        .contenedorDescripcion {
+            width: 100%;
+            align-items: center;
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .contenedorCartaProductoIndividual {
+        padding: 15px 5px;
+
+        .contenedorDescripcion {
+            h2 {
+                font-size: 25px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            h4 {
+                font-size: 16px;
+            }
         }
     }
 }

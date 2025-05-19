@@ -1,22 +1,37 @@
-div {
+.loader {
+    h1 {
+        height: calc(100dvh - 106px - 84px); // Este cálculo se hace para que se vea el 100% de la pantalla de manera prolija
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #222831;
+        color: white;
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+.tiendaContenedor {
     text-align: center;
+
+    h1 {
+        font-size: 40px;
+        color: #222831;
+        background-color: white;
+        display: inline-block;
+        text-align: center;
+        width: 90%;
+        padding: 10px;
+        margin-top: 30px;
+        border-radius: 20px;
+    }
 
     .contenedorEncabezados {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
-        h1 {
-            font-size: 40px;
-            font-style: italic;
-            background-color: #222831;
-            text-align: center;
-            display: inline-block;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
 
         h2 {
             font-size: 30px;
@@ -41,17 +56,6 @@ div {
         align-items: center;
         flex-direction: column;
 
-        h1 {
-            font-size: 40px;
-            font-style: italic;
-            background-color: #222831;
-            text-align: center;
-            display: inline-block;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
-
         h2 {
             font-size: 30px;
             background-color: #222831;
@@ -69,18 +73,6 @@ div {
         }
     }
 }
-
-h1 {
-    font-size: 40px;
-    font-style: italic;
-    background-color: #222831;
-    text-align: center;
-    display: inline-block;
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-}
-
 
 // MEDIA QUERIES
 

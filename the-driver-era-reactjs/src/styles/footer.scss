@@ -1,29 +1,53 @@
 footer {
     background-color: black;
     text-align: center;
+    padding: 20px 0;
 
     div {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
+        gap: 15px;
         margin: 0 auto;
-        width: 40%;
 
         a {
-            font-size: 40px;
-            color: white;
-            transition: color 0.5s;
+            font-size: 28px;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #121212;
+            transition: all 0.4s ease-in-out;
 
             &:hover {
-                color: green;
+                background-color: #f3f4ff;
+            }
+
+            &.instagram {
+                color: #e4405f;
+            }
+            &.twitter {
+                color: white;
+
+                &:hover {
+                    color: #121212;
+                }
+            }
+            &.youtube {
+                color: red;
+            }
+            &.spotify {
+                color: #1db954;
             }
         }
+    }
 
-        p {
-            margin: 0;
-            padding: 10px;
-            color: white;
-        }
+    p {
+        margin: 10px 0 0;
+        color: white;
+        font-style: italic;
     }
 }
 

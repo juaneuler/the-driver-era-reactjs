@@ -57,7 +57,7 @@ const ItemDetailContainer = () => {
   return (
     <>
       {cargando ? (
-        <h1>Cargando información del producto...</h1>
+        <h1 className='tituloLoader'>Cargando información del producto...</h1>
       ) : (
         <div className='contenedorDeTarjeta'>
           {producto ? <ItemDetail producto={producto} /> : <h1>Producto no encontrado</h1>}

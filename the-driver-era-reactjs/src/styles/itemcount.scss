@@ -13,20 +13,86 @@
             margin-bottom: 10px;
             font-size: 20px;
         }
+
+        label {
+            font-size: 18px;
+            color: #222831;
+            font-weight: 500;
+            margin-right: 5px;
+        }
+
+        .selectorCantidad {
+            width: 130px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 18px;
+            margin-left: 5px;
+            color: #222831;
+            border: 2px solid #222831;
+            background: #fff;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            position: relative;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .selectorCantidad:focus {
+            border-color: #222831;
+            box-shadow: 0 0 0 2px #22283133;
+        }
+
+        .selectorCantidad option {
+            color: #222831;
+            background: #fff;
+            cursor: pointer;
+            padding-left: 10px;
+            font-size: 17px;
+        }
+
+        .selectorCantidad option.opcion-activa,
+        .selectorCantidad option:checked {
+            background: #f5f6fa;
+            border-left: 4px solid #222831;
+            padding-left: 6px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .selectorCantidad::-ms-expand {
+            color: #222831;
+            background: #fff;
+        }
+
+        .selectorCantidad::-webkit-input-placeholder {
+            color: #222831;
+        }
+
+        .selectorCantidad:active,
+        .selectorCantidad:hover {
+            border-color: #222831;
+        }
     }
 
     .boton {
+        display: inline-block;
+        padding: 10px 22px;
+        margin: 8px 8px 0 0;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        color: #fff;
+        background-color: #222831;
         cursor: pointer;
-        background-color: white;
-        color: black;
-        border-radius: 10px;
-        padding: 5px;
-        font-size: 20px;
-        margin: 10px;
-        transition: background-color 0.3s;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 
-        &:active {
-            background-color: wheat;
-          }
+        &:hover {
+            background-color: #11151a;
+            color: #00ff99;
+            box-shadow: 0 2px 8px rgba(34, 40, 49, 0.15);
+        }
     }
 }

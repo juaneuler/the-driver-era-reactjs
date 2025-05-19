@@ -22,15 +22,15 @@ const Cart = () => {
                     {carrito.map((itemCarrito) => (
                         <CartItem item={itemCarrito} key={itemCarrito.id} eliminarProducto={eliminarProducto} />
                     ))}
-                    <button onClick={vaciarCarrito} className="botonVaciar">Vaciar carrito</button>
+                    <button onClick={vaciarCarrito} className="boton">Vaciar carrito</button>
                     <h2>TOTAL: U$D {precioTotal.toFixed(2)}</h2>
-                    <NavLink to={"/checkout"} className="botonCheckout">FINALIZAR COMPRA</NavLink>
+                    <NavLink to={"/checkout"} className="boton">FINALIZAR COMPRA</NavLink>
                 </>
             ) : (
                 <>
                     <h2>Tu carrito está vacío</h2>
                     <h2>Por qué no agregamos algo?</h2>
-                    <NavLink to={"/"} className="botonIrAHome">Ir a home</NavLink>
+                    <NavLink to={"/"} className="boton">Ir a home</NavLink>
                 </>
             )}
         </div>

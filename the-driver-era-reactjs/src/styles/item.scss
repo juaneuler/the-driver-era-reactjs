@@ -3,21 +3,61 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 500px;
-    margin: 10px;
-    padding: 10px;
-    background-color: #222831;
+    width: 400px;
+    min-height: 420px;
+    margin: 15px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    color: #222831;
     border: 2px green solid;
     border-radius: 20px;
+    box-sizing: border-box;
+    transition:
+        box-shadow 0.3s,
+        transform 0.3s,
+        border-color 0.3s;
+
+    // Efecto al pasar el mouse por encima de la tarjeta
+    &:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        transform: translateY(-8px) scale(1.03);
+        border-color: #00ff99;
+        cursor: pointer;
+
+        h2, h3 {
+            color: #11151a;
+        }
+    }
 
     h2 {
-        background-color: black;
         border-radius: 5px;
-        padding: 5px;
+        padding: 5px 10px;
+        margin: 10px 0 5px 0;
+        color: #222831;
+        font-size: 1.2rem;
+        text-align: center;
+        width: 100%;
+        /* Calculamos la altura para que los títulos ocupen 2 renglones: 1.2rem * 2 + padding */
+        min-height: calc(1.2em * 2 + 10px);
+        max-height: calc(1.2em * 2 + 10px);
+        display: -webkit-box;
+        -webkit-line-clamp: 2; // Soporte Webkit
+        line-clamp: 2; // Propiedad estándar
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        word-break: break-word;
     }
 
     h3 {
-        font-size: 25px;
+        font-size: 1.1rem;
+        color: #222831;
+        margin-bottom: 10px;
+        min-height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     h4 {
@@ -25,48 +65,44 @@
     }
 
     img {
-        width: 400px;
-        height: 400px;
+        width: 300px;
+        height: 300px;
         margin: 10px;
-    }
-
-    .botonInformacion {
-        cursor: pointer;
-        background-color: white;
-        color: black;
-        border-radius: 10px;
-        padding: 5px;
-        font-size: 20px;
-        margin: 10px;
-        transition: background-color 0.3s;
-
-        &:active {
-            background-color: wheat;
-          }
     }
 }
 
 
 // MEDIA QUERIES
 
-@media screen and (max-width:1054px) {
-    .contenedorCartaProducto {
-        width: 400px;
+.contenedorCartaProducto {
+    width: 350px;
 
-        img {
-            width: 250px;
-            height: 250px;
-        }
+    img {
+        width: 95%;
+        height: 250px;
+        object-fit: contain;
     }
 }
 
-@media screen and (max-width:880px) {
+@media screen and (max-width: 779px) {
     .contenedorCartaProducto {
         width: 300px;
 
         img {
-            width: 200px;
-            height: 200px;
+            width: 95%;
+            height: 300px;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .contenedorCartaProducto {
+        width: 95vw;
+        max-width: 350px;
+
+        img {
+            width: 95%;
+            height: 300px;
         }
     }
 }

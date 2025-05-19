@@ -76,13 +76,15 @@ const ItemListContainer = () => {
   return (
     <>
       {cargando ? (
-        <h1>Aguarde mientras se carga el sitio web...</h1>
+        <div className='loader'>
+          <h1>Aguarde mientras se carga el sitio web...</h1>
+        </div>
       ) : (
-        <div>
+        <div className='tiendaContenedor'>
           {!categoryId && <Portada />}
-          <h1>THE DRIVER ERA - SHOP</h1>
+          <h1 className='títuloTienda'>THE DRIVER ERA - SHOP</h1>
           <ItemList productos={productos} />
-          {!categoryId && <WebOficial/>}
+          {!categoryId && <WebOficial />}
         </div>
       )}
     </>
