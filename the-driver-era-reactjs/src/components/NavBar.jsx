@@ -32,7 +32,7 @@ const NavBar = () => {
                         className={({ isActive }) => (isActive ? 'isActive' : 'notActive')}
                         to={"/category/merch"}
                     >
-                        Merch Tour 2024
+                        Merch
                     </NavLink>
                 </li>
                 <li>
