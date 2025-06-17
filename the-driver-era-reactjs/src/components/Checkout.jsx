@@ -64,10 +64,22 @@ const Checkout = () => {
             setOrdenId(ordenRef.id);
 
             // Actualizo el stock
-            carrito.forEach(async (producto) => {
+            for (const producto of carrito) {
                 const productoRef = doc(db, 'productos', producto.id);
-                await updateDoc(productoRef, { stock: producto.stock - producto.cantidad });
-            });
+
+                // Si el stock es un producto que tiene talle
+                if (typeof producto.stock === "object" && producto.talle) {
+                    // Copio el stock actual
+                    const nuevoStock = { ...producto.stock };
+                    // Restamos la cantidad solo al talle que se haya comprado
+                    nuevoStock[producto.talle] = Math.max(0, (nuevoStock[producto.talle] || 0) - producto.cantidad);
+
+                    await updateDoc(productoRef, { stock: nuevoStock });
+                } else if (typeof producto.stock === "number") {
+                    // Actualizamos el stock si el producto es simple
+                    await updateDoc(productoRef, { stock: Math.max(0, producto.stock - producto.cantidad) });
+                }
+            }
 
             vaciarCarrito(false);
         } catch (error) {

@@ -6,7 +6,7 @@ import "../styles/cartitem.scss"
 const CartItem = ({ item, eliminarProducto }) => {
   return (
     <div className='contenedorCartItem'>
-        <img src={item.imagen} alt={`Foto de ${item.nombre}`}/>
+        <img src={item.imagenes[0]} alt={`Foto de ${item.nombre}`}/>
         <h2>{item.nombre}</h2>
         <h3>Descripción del producto: {item.descripcion}</h3>
         <h3>Precio: U$D {item.precio}</h3>
