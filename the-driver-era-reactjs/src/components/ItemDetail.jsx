@@ -61,9 +61,51 @@ const ItemDetail = ({ producto }) => {
     return (
         <div className='contenedorCartaProductoIndividual'>
             <div className="galeriaImagenes">
-                <img className="imagenPrincipal" src={imagenSeleccionada} alt={producto.nombre} />
-
-                {imagenes.length > 0 && (
+                {miniaturasPorVista > 1 ? (
+                    <>
+                        <img
+                            className="imagenPrincipal"
+                            src={imagenSeleccionada}
+                            alt={producto.nombre}
+                        />
+                        {imagenes.length > 1 && (
+                            <div className="carruselMiniaturas">
+                                {mostrarBotones && (
+                                    <button
+                                        className="botonCarrusel"
+                                        onClick={retroceder}
+                                        disabled={indiceInicioCarrusel === 0}
+                                    >
+                                        ‹
+                                    </button>
+                                )}
+                                <div className="miniaturas">
+                                    {imagenes.slice(
+                                        indiceInicioCarrusel,
+                                        indiceInicioCarrusel + miniaturasPorVista
+                                    ).map((img, i) => (
+                                        <img
+                                            key={i}
+                                            src={img}
+                                            alt={`${producto.nombre} - ${i}`}
+                                            className={`miniatura${img === imagenSeleccionada ? " activa" : ""}`}
+                                            onClick={() => setImagenSeleccionada(img)}
+                                        />
+                                    ))}
+                                </div>
+                                {mostrarBotones && (
+                                    <button
+                                        className="botonCarrusel"
+                                        onClick={avanzar}
+                                        disabled={indiceInicioCarrusel + miniaturasPorVista >= imagenes.length}
+                                    >
+                                        ›
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                    </>
+                ) : (
                     <div className="carruselMiniaturas">
                         {mostrarBotones && (
                             <button
@@ -74,19 +116,19 @@ const ItemDetail = ({ producto }) => {
                                 ‹
                             </button>
                         )}
-
                         <div className="miniaturas">
-                            {imagenes.slice(indiceInicioCarrusel, indiceInicioCarrusel + miniaturasPorVista).map((img, i) => (
+                            {imagenes.slice(
+                                indiceInicioCarrusel,
+                                indiceInicioCarrusel + miniaturasPorVista
+                            ).map((img, i) => (
                                 <img
                                     key={i}
                                     src={img}
                                     alt={`${producto.nombre} - ${i}`}
-                                    className={`miniatura${img === imagenSeleccionada ? " activa" : ""}`}
-                                    onClick={() => setImagenSeleccionada(img)}
+                                    className="miniatura"
                                 />
                             ))}
                         </div>
-
                         {mostrarBotones && (
                             <button
                                 className="botonCarrusel"

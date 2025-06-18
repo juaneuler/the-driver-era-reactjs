@@ -48,7 +48,8 @@ const ItemListContainer = () => {
               productosFiltrados.push({ id: doc.id, ...doc.data() })
             });
           } else {
-            const querySnapshot = await getDocs(collection(db, "productos"), orderBy("orden"));
+            const q = query(collection(db, "productos"), orderBy("orden"));
+            const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
               productosFiltrados.push({ id: doc.id, ...doc.data() })
             });
