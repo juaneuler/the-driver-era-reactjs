@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { db } from "../firebase/config"
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 
 import ItemDetail from './ItemDetail'
@@ -56,6 +57,15 @@ const ItemDetailContainer = () => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          {cargando
+            ? "Cargando producto..."
+            : producto
+              ? `${producto.nombre} | THE DRIVER ERA SHOP`
+              : "Producto no encontrado | THE DRIVER ERA SHOP"}
+        </title>
+      </Helmet>
       {cargando ? (
         <h1 className='tituloLoader'>Cargando información del producto...</h1>
       ) : (

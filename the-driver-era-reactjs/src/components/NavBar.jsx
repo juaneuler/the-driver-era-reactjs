@@ -30,6 +30,22 @@ const NavBar = () => {
                 <li>
                     <NavLink
                         className={({ isActive }) => (isActive ? 'isActive' : 'notActive')}
+                        to={"/category/obsession"}
+                    >
+                        Obsession
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        className={({ isActive }) => (isActive ? 'isActive' : 'notActive')}
+                        to={"/category/obsession-tour"}
+                    >
+                        Obsession Tour
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        className={({ isActive }) => (isActive ? 'isActive' : 'notActive')}
                         to={"/category/merch"}
                     >
                         Merch

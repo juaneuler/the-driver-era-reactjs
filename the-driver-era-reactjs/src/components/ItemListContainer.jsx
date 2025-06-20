@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { db } from "../firebase/config"
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { useParams } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 
 // Importación del componente Portada
@@ -76,6 +77,13 @@ const ItemListContainer = () => {
   // Retorno el contenido de la tienda
   return (
     <>
+      <Helmet>
+        <title>
+          {categoryId
+            ? `Categoría: ${categoryId.toUpperCase()} | THE DRIVER ERA SHOP`
+            : "Tienda | THE DRIVER ERA SHOP"}
+        </title>
+      </Helmet>
       {cargando ? (
         <div className='loader'>
           <h1>Aguarde mientras se carga el sitio web...</h1>

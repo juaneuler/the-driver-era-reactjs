@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Cart as ContextoCarrito } from '../context/CartProvider';
 import { db } from "../firebase/config"
-import { collection, addDoc, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, updateDoc,doc, serverTimestamp } from 'firebase/firestore';
+import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
 
 // Hoja de estilos
@@ -95,68 +96,73 @@ const Checkout = () => {
     };
 
     return (
-        <div className='contenedorCheckout'>
-            <h1>FINALIZAR COMPRA</h1>
-            {cargando ? (
-                <div>
-                    <h2>Aguarde mientras se genera su orden...</h2>
-                </div>
-            ) : ordenId ? (
-                <div>
-                    <h2>Gracias por tu compra! La orden es número: {ordenId}</h2>
-                    <h3>Una vez que tus productos estén listos para ser despachados, recibirás el número de seguimiento</h3>
-                </div>
-            ) : (
-                <div className='contenedorFormulario'>
-                    <h2>Ingrese sus datos de facturación</h2>
-                    <form onSubmit={manejarSubmit}>
-                        <InputFormulario
-                            type="text"
-                            placeholder="Nombre"
-                            value={nombre}
-                            onChange={(evento) => setNombre(evento.target.value)}
-                            required
-                        />
-                        <InputFormulario
-                            type="text"
-                            placeholder="Apellido"
-                            value={apellido}
-                            onChange={(evento) => setApellido(evento.target.value)}
-                            required
-                        />
-                        <InputFormulario
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(evento) => setEmail(evento.target.value)}
-                            required
-                        />
-                        <InputFormulario
-                            type="email"
-                            placeholder="Confirmar Email"
-                            value={confirmarEmail}
-                            onChange={(evento) => setConfirmarEmail(evento.target.value)}
-                            required
-                        />
-                        <InputFormulario
-                            type="tel"
-                            placeholder="Teléfono"
-                            value={telefono}
-                            onChange={(evento) => setTelefono(evento.target.value)}
-                            required
-                        />
-                        <InputFormulario
-                            type="text"
-                            placeholder="Domicilio"
-                            value={domicilio}
-                            onChange={(evento) => setDomicilio(evento.target.value)}
-                            required
-                        />
-                        <button className='botonSubmitFormulario' type="submit">Confirmar Compra</button>
-                    </form>
-                </div>
-            )}
-        </div>
+        <>
+            <Helmet>
+                <title>Checkout | THE DRIVER ERA SHOP</title>
+            </Helmet>
+            <div className='contenedorCheckout'>
+                <h1>FINALIZAR COMPRA</h1>
+                {cargando ? (
+                    <div>
+                        <h2>Aguarde mientras se genera su orden...</h2>
+                    </div>
+                ) : ordenId ? (
+                    <div>
+                        <h2>Gracias por tu compra! La orden es número: {ordenId}</h2>
+                        <h3>Una vez que tus productos estén listos para ser despachados, recibirás el número de seguimiento</h3>
+                    </div>
+                ) : (
+                    <div className='contenedorFormulario'>
+                        <h2>Ingrese sus datos de facturación</h2>
+                        <form onSubmit={manejarSubmit}>
+                            <InputFormulario
+                                type="text"
+                                placeholder="Nombre"
+                                value={nombre}
+                                onChange={(evento) => setNombre(evento.target.value)}
+                                required
+                            />
+                            <InputFormulario
+                                type="text"
+                                placeholder="Apellido"
+                                value={apellido}
+                                onChange={(evento) => setApellido(evento.target.value)}
+                                required
+                            />
+                            <InputFormulario
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(evento) => setEmail(evento.target.value)}
+                                required
+                            />
+                            <InputFormulario
+                                type="email"
+                                placeholder="Confirmar Email"
+                                value={confirmarEmail}
+                                onChange={(evento) => setConfirmarEmail(evento.target.value)}
+                                required
+                            />
+                            <InputFormulario
+                                type="tel"
+                                placeholder="Teléfono"
+                                value={telefono}
+                                onChange={(evento) => setTelefono(evento.target.value)}
+                                required
+                            />
+                            <InputFormulario
+                                type="text"
+                                placeholder="Domicilio"
+                                value={domicilio}
+                                onChange={(evento) => setDomicilio(evento.target.value)}
+                                required
+                            />
+                            <button className='botonSubmitFormulario' type="submit">Confirmar Compra</button>
+                        </form>
+                    </div>
+                )}
+            </div>
+        </>
     );
 };
 

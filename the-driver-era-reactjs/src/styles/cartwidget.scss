@@ -11,9 +11,8 @@
     &:hover {
         color: orangered;
     }
+}
 
-    img {
-        filter: invert(1);
-        width: 40px;
-    }
+.cartWidget.isActive {
+    color: green;
 }
