@@ -9,7 +9,7 @@ import "../styles/item.scss"
 
 const Item = ({ item }) => {
   return (
-    <NavLink to={`/detail/${item.id}`} className="navlink-item" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <NavLink to={`/detail/${item.slug}`} className="navlink-item" style={{ textDecoration: 'none', color: 'inherit' }}>
       <div className='contenedorCartaProducto'>
         <img src={item.imagenes[0]} alt={`Foto de ${item.nombre}`} />
         <h2>{item.nombre}</h2>
