@@ -90,7 +90,6 @@ const ItemListContainer = () => {
         </div>
       ) : (
         <div className='tiendaContenedor'>
-          {!categoryId && <Portada />}
           <h1 className='títuloTienda'>THE DRIVER ERA - SHOP</h1>
           <ItemList productos={productos} />
           {!categoryId && <WebOficial />}
