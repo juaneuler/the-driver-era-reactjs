@@ -6,39 +6,36 @@ import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 
 import ItemDetail from './ItemDetail'
+import PantallaNegra from './PantallaNegra'
 
-// Hoja de estilos
+// Loader
+import { useLoader } from '../context/LoaderProvider'
+
+// Estilos
 import "../styles/itemdetailcontainer.scss"
 
-
 const ItemDetailContainer = () => {
-
-  // Estado para productos y useParams
-
   const { slug } = useParams()
   const [producto, setProducto] = useState(null)
-  const [cargando, setCargando] = useState(true)
-
-  //Efecto para encontrar cada producto
+  const { showLoader, hideLoader } = useLoader()
 
   useEffect(() => {
-    (async () => {
-      setCargando(true);
+    showLoader()
+    const fetchProducto = async () => {
       try {
-        const q = query(collection(db, "productos"), where("slug", "==", slug));
-        const querySnapshot = await getDocs(q);
+        const q = query(collection(db, "productos"), where("slug", "==", slug))
+        const querySnapshot = await getDocs(q)
 
         if (!querySnapshot.empty) {
-          // Comprobamos que solo haya un producto por slug
-          const doc = querySnapshot.docs[0];
-          setProducto({ id: doc.id, ...doc.data() });
+          const doc = querySnapshot.docs[0]
+          setProducto({ id: doc.id, ...doc.data() })
         } else {
           Swal.fire({
             title: "Producto no encontrado",
             text: "No se encontró el producto solicitado",
             icon: "warning",
             confirmButtonText: "Aceptar"
-          });
+          })
         }
       } catch (error) {
         Swal.fire({
@@ -46,35 +43,33 @@ const ItemDetailContainer = () => {
           text: "Ocurrió un error al cargar el producto: " + error.message,
           icon: "error",
           confirmButtonText: "Aceptar"
-        });
+        })
       } finally {
-        setCargando(false);
+        hideLoader()
       }
-    })();
-  }, [slug]);
+    }
 
-  // Retorno el producto seleccionado
+    fetchProducto()
+  }, [slug])
 
   return (
     <>
       <Helmet>
         <title>
-          {cargando
-            ? "Cargando producto..."
-            : producto
-              ? `${producto.nombre} | THE DRIVER ERA SHOP`
-              : "Producto no encontrado | THE DRIVER ERA SHOP"}
+          {producto ? `${producto.nombre} | THE DRIVER ERA SHOP` : "Producto | THE DRIVER ERA SHOP"}
         </title>
       </Helmet>
-      {cargando ? (
-        <h1 className='tituloLoader'>Cargando información del producto...</h1>
-      ) : (
+
+      {/* Pantalla negra mientras carga el contenido */}
+      {!producto && <PantallaNegra />}
+
+      {producto && (
         <div className='contenedorDeTarjeta'>
-          {producto ? <ItemDetail producto={producto} /> : <h1>Producto no encontrado</h1>}
+          <ItemDetail producto={producto} />
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
 export default ItemDetailContainer
