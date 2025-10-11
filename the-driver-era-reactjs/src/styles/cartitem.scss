@@ -5,11 +5,18 @@
     padding: 15px;
     text-align: center;
     align-items: center;
-    background-color: black;
+    color: #222831;
+    background-color: #eeeeee;
     border-radius: 25px;
-    border: 1px solid white;
+    border: 1px solid #ccc;
     padding: 10px;
     margin: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    h2,
+    h3 {
+        color: #222831;
+    }
 
     img {
         width: 200px;
