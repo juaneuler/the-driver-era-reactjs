@@ -1,16 +1,17 @@
 
 # THE DRIVER ERA - React Js
 
-Este proyecto es un E-commerce basado en los productos de la banda The Driver Era.
+Proyecto E-commerce basado en los productos de la banda **The Driver Era**, donde los fans pueden explorar productos oficiales, agregarlos al carrito y completar compras en línea!
+
+![Vite](https://img.shields.io/badge/Vite-4.4.9-brightgreen)
+![React](https://img.shields.io/badge/React-18.3.0-blue)
+![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 
 ## Autor
 
-**Juan Euler**
-
-- Git Hub: https://github.com/juaneuler
-
-- LinkedIn: https://www.linkedin.com/in/juan-euler/
+- [@Juan Euler](https://github.com/juaneuler)
 
 
 ## Uso
@@ -22,23 +23,27 @@ Los productos se renderizan desde el array almacenado en Firestore. La colecció
 Cuando se genere una orden, se enviará a la colección de Firestore llamada "órdenes".
 
 
-### Características
+### Características Principales
 
-- Navegación entre productos.
-- Filtros por categoría.
-- Sistema de carrito.
-- Confirmaciones de compra.
+- Navegación SPA con React Router DOM.
+- Filtros dinámicos por categoría de productos.
+- Carrito de compras con cantidad y precio actualizado en tiempo real.
+- Confirmación de órdenes mediante SweetAlert2.
+- Integración con Firestore para persistencia de productos y órdenes.
+- Sistema de Loader global para mejorar la percepción de carga.
+- Responsive design con SASS y CSS moderno.
 
 
-## Tecnologías usadas
+### Tecnologías
 
-- **VITE**: Se creó la aplicación usando este entorno de desarrollo. Es la mejor elección porque es un entorno más rápido, y a la vez, sólo instala las dependencias necesarias (a diferencia de Create React App, que las instala todas). Además, Vite realiza empaquetado por módulos (otra diferencia respecto a CRA), lo que también contribuye a hacer el proyecto más ligero.
-- **React Router DOM**: Se usó para la navegación entre páginas. Esta herramienta permite generar URLs más limpias. Además, permite usar el botón "atrás" del navegador y no resetear los estados de la aplicación.
-- **Bootstrap Icons**: Íconos para redes sociales en el componente Footer. Elegí esta herramienta porque permite hacer una experiencia de usuario más amena que simples links con texto plano.
-- **Animate Style CSS**: Librería para animaciones. Las usé para dar un poco más de vida a los componentes "Portada" y "WebOficial" que se muestran en home. Ayuda a que el sitio no se vea tan estático. (Se pegó el link de CSS en el documento index.html)
-- **SweetAlert2**: Librería para mostrar alertas y confirmaciones de acciones. Es una opción simple para mejorar la experiencia del usuario en lugar de las alertas clásicas de navegador. Permite que la información dada no pase desapercibida.
-- **Firestore**: Se usó el servicio incluido en Firebase para almacenar el array de productos y ver las órdenes de compra generadas.
-- **SASS**: Instalado para utilizar SCSS (no modular). Es la mejor opción para tener un código más limpio y no comprimir todo en un solo archivo CSS.
+- **React 18**: Librería para construir interfaces de usuario.
+- **Vite**: Entorno de desarrollo rápido y ligero.
+- **React Router DOM**: Navegación SPA sin recargar páginas.
+- **SASS / SCSS**: Para estilos modulables y mantenibles.
+- **Firebase Firestore**: Base de datos NoSQL para productos y órdenes.
+- **SweetAlert2**: Alertas y confirmaciones personalizadas.
+- **Animate.css**: Animaciones para mejorar UX.
+- **Bootstrap Icons**: Íconos para redes sociales en el footer.
 
 
 ## Despliegue
@@ -52,14 +57,14 @@ Servidor utilizado: Netlify
 
 ## Para ver el proyecto localmente (se necesita tener Node Js instalado para ejecutar los comandos de NPM)
 
-1) Clonar el repositorio
+# Clonar repositorio
 git clone https://github.com/juaneuler/the-driver-era-reactjs
 
-2) Navegar al directorio del proyecto
+# Entrar al proyecto
 cd the-driver-era-reactjs
 
-3) Instalar las dependencias
+# Instalar dependencias
 npm install
 
-4) Ejecutar la aplicación (Vite)
+# Ejecutar aplicación
 npm run dev
