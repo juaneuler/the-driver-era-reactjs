@@ -18,6 +18,8 @@ Proyecto E-commerce basado en los productos de la banda **The Driver Era**, dond
 
 Los usuarios pueden navegar y ver productos, filtrar por categoría, agregarlos al carrito, y realizar compras. El método de confirmación es mediante SweetAlert2.
 
+El envío de confirmación de órdenes al cliente y al administrador se realiza mediante **EmailJS**, permitiendo que los emails se generen automáticamente al completar la compra.
+
 Los productos se renderizan desde el array almacenado en Firestore. La colección es "productos".
 
 Cuando se genere una orden, se enviará a la colección de Firestore llamada "órdenes".
