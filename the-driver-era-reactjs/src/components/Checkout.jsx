@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import PantallaNegra from "./PantallaNegra";
 import { useLoader } from "../context/LoaderProvider";
 import DetalleOrden from "./DetalleOrden";
+import { enviarMailCliente, enviarMailAdmin } from "../services/emailService";
 
 const Checkout = () => {
     const { carrito, vaciarCarrito } = useContext(ContextoCarrito);
@@ -18,6 +19,7 @@ const Checkout = () => {
     const [cargando, setCargando] = useState(true);
     const [ordenItems, setOrdenItems] = useState([]);
     const [ordenTotal, setOrdenTotal] = useState(0);
+    const [buyer, setBuyer] = useState(null);
     const { showLoader, hideLoader } = useLoader();
 
     const {
@@ -29,7 +31,6 @@ const Checkout = () => {
 
     const email = watch("email");
 
-    // Loader inicial
     useEffect(() => {
         showLoader();
         const timer = setTimeout(() => {
@@ -39,7 +40,6 @@ const Checkout = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    // Este es el nuevo formulario
     const manejarSubmit = async (data) => {
         const { nombre, apellido, email, telefono, domicilio, emailConfirmacion } = data;
 
@@ -53,16 +53,20 @@ const Checkout = () => {
             return;
         }
 
+        const buyerData = { nombre, apellido, email, telefono, domicilio };
+        setBuyer(buyerData);
+
         setCargando(true);
         showLoader();
 
+        const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
         setOrdenItems(carrito);
-        setOrdenTotal(carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0));
+        setOrdenTotal(total);
 
         const nuevaOrden = {
-            buyer: { nombre, apellido, email, telefono, domicilio },
+            buyer: buyerData,
             items: carrito,
-            total: carrito.reduce((acumulador, item) => acumulador + item.precio * item.cantidad, 0),
+            total,
             timestamp: serverTimestamp(),
             estado: estadoOrden,
         };
@@ -71,10 +75,16 @@ const Checkout = () => {
             const ordenRef = await addDoc(collection(db, "ordenes"), nuevaOrden);
             setOrdenId(ordenRef.id);
 
-            // Actualizo el stock
+            // Enviar emails
+            await Promise.all([
+                enviarMailCliente({ ordenId: ordenRef.id, buyer: buyerData, items: carrito, total }),
+                enviarMailAdmin({ ordenId: ordenRef.id, buyer: buyerData, items: carrito, total }),
+            ]);
+
+
+            // Actualizar stock
             for (const producto of carrito) {
                 const productoRef = doc(db, "productos", producto.id);
-
                 if (typeof producto.stock === "object" && producto.talle) {
                     const nuevoStock = { ...producto.stock };
                     nuevoStock[producto.talle] = Math.max(0, (nuevoStock[producto.talle] || 0) - producto.cantidad);
@@ -113,7 +123,7 @@ const Checkout = () => {
                     (ordenId ? (
                         <DetalleOrden
                             ordenId={ordenId}
-                            buyer={watch()} // recuperamos los valores del formulario
+                            buyer={buyer}
                             items={ordenItems}
                             total={ordenTotal}
                         />
