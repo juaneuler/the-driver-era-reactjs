@@ -19,11 +19,8 @@ export const enviarMailCliente = async ({ ordenId, buyer, items, total }) => {
             orden_id: ordenId,
             total: `$${total}`,
             productos_html: items
-                .map(
-                    (item) =>
-                        `${item.nombre} x${item.cantidad} - U$D ${item.precio}`
-                )
-                .join('<br/>'),
+                .map(item => `${item.nombre} x${item.cantidad} - U$D ${item.precio}`)
+                .join('\n')
         };
 
         await emailjs.send(SERVICE_ID, TEMPLATE_CLIENTE, templateParams, PUBLIC_KEY);
