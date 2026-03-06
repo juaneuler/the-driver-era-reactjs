@@ -1,63 +1,65 @@
+# THE DRIVER ERA - React Js & Professional Analytics Showcase
 
-# THE DRIVER ERA - React Js
+Proyecto E-commerce basado en los productos de la banda **The Driver Era**. Una plataforma completa donde los fans pueden explorar productos oficiales, gestionar su carrito y completar compras en tiempo real.
 
-Proyecto E-commerce basado en los productos de la banda **The Driver Era**, donde los fans pueden explorar productos oficiales, agregarlos al carrito y completar compras en línea!
+Este repositorio ha sido evolucionado para demostrar habilidades avanzadas de **Arquitectura de Datos y Tagging**, implementando una capa de datos (Data Layer) robusta para Google Tag Manager.
 
 ![Vite](https://img.shields.io/badge/Vite-4.4.9-brightgreen)
 ![React](https://img.shields.io/badge/React-18.3.0-blue)
 ![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
+![GTM](https://img.shields.io/badge/GTM-DataLayer-blueviolet)
 
+## Arquitectura de Analytics y Tagging
 
-## Autor
+Para asegurar la integridad de los datos y la performance de la aplicación, apliqué las siguientes estrategias:
 
-- [@Juan Euler](https://github.com/juaneuler)
+### 1. Integración Asíncrona de Conversiones (Context API)
 
+En lugar de inyectar el código de tracking en los botones de la interfaz (JSX), centralicé los eventos de E-commerce (`add_to_cart`, `remove_from_cart`) dentro de la **Context API** de React, más precisamente en el `CartProvider.jsx`. Esto mantiene el código de UI limpio y asegura que el tracking ocurra en paralelo con la lógica de negocio.
 
-## Uso
+### 2. Solución para Single Page Applications (Virtual Page Views)
 
-Los usuarios pueden navegar y ver productos, filtrar por categoría, agregarlos al carrito, y realizar compras. El método de confirmación es mediante SweetAlert2.
+Al usar React Router, las rutas cambian sin recargar la página, lo que deja a GTM "ciego". Implementé un listener en `App.jsx` que escucha `useLocation()`.
 
-El envío de confirmación de órdenes al cliente y al administrador se realiza mediante **EmailJS**, permitiendo que los emails se generen automáticamente al completar la compra.
+**Manejo de Race Condition (Timing Fix):**
+Incluí un *delay* controlado de 100ms para asegurar que `react-helmet-async` haya actualizado el `document.title` en el DOM antes de que GTM capture el evento, garantizando que el título y el path coincidan en los reportes.
 
-Los productos se renderizan desde el array almacenado en Firestore. La colección es "productos".
+**MIRÁ LA CONSOLA EN TIEMPO REAL:**
+Al navegar por la tienda, se observan los logs azules personalizados confirmando el disparo de los eventos.
 
-Cuando se genere una orden, se enviará a la colección de Firestore llamada "órdenes".
+![Browser Console Logs](./src/docs/analytics/01-browser-console-logs.png)
 
+### 3. Validación de la Conversión (Purchase with Firebase Sync)
 
-### Características Principales
+El evento `purchase` es el punto más crítico. Se dispara en el componente `<Checkout />` **únicamente tras la confirmación exitosa** de la orden en Firestore, capturando el `transaction_id` real generado por la base de datos para una reconciliación de datos 1:1.
 
-- Navegación SPA con React Router DOM.
-- Filtros dinámicos por categoría de productos.
-- Carrito de compras con cantidad y precio actualizado en tiempo real.
-- Confirmación de órdenes mediante SweetAlert2.
-- Integración con Firestore para persistencia de productos y órdenes.
-- Sistema de Loader global para mejorar la percepción de carga.
-- Responsive design con SASS y CSS moderno.
+**MIRÁ EL EVENTO EN EL DATALAYER:**
+Esta es la prueba definitiva. El evento `purchase` en el GTM Tag Assistant con los datos reales de la compra y el ID de Firebase.
 
+![GTM Preview Mode Purchase Event](./src/docs/analytics/02-gtm-datalayer-purchase.png)
 
-### Tecnologías
+---
 
-- **React 18**: Librería para construir interfaces de usuario.
-- **Vite**: Entorno de desarrollo rápido y ligero.
-- **React Router DOM**: Navegación SPA sin recargar páginas.
-- **SASS / SCSS**: Para estilos modulables y mantenibles.
+## 🛠️ Características Principales
+
+- **Navegación SPA:** Fluidez total con React Router DOM.
+- **Filtros Dinámicos:** Búsqueda por categoría de productos en tiempo real.
+- **Carrito Progresivo:** Persistencia de datos y cálculo de stock actualizado.
+- **Comunicación Automatizada:** Integración con **EmailJS** para confirmaciones automáticas al cliente y administrador.
+- **Validación de Datos:** Formularios de checkout gestionados con **React Hook Form**.
+- **UX/UI:** Sistema de Loader global, alertas con **SweetAlert2** y diseño responsive con **SASS**.
+
+## 💻 Tecnologías
+
+- **React 18 & Vite**
 - **Firebase Firestore**: Base de datos NoSQL para productos y órdenes.
-- **SweetAlert2**: Alertas y confirmaciones personalizadas.
-- **Animate.css**: Animaciones para mejorar UX.
-- **Bootstrap Icons**: Íconos para redes sociales en el footer.
+- **Google Tag Manager**: Gestión profesional de eventos y DataLayer.
+- **SASS / SCSS**: Estilos modulables y mantenibles.
+- **Bootstrap Icons**: Mejoras visuales y estética moderna.
 
+---
 
-## Despliegue
-
-Se puede ver el sitio web desde este link
-
-https://thedrivererashop.netlify.app/
-
-Servidor utilizado: Netlify
-
-
-## Para ver el proyecto localmente (se necesita tener Node Js instalado para ejecutar los comandos de NPM)
+## Para testear la implementación de GTM localmente:
 
 # Clonar repositorio
 git clone https://github.com/juaneuler/the-driver-era-reactjs
@@ -68,5 +70,20 @@ cd the-driver-era-reactjs
 # Instalar dependencias
 npm install
 
+# Configurar GTM Preview
+Abre tu contenedor de Tag Manager, activa el Preview Mode apuntando a http://localhost:5173.
+
 # Ejecutar aplicación
 npm run dev
+
+## Despliegue
+
+Se puede ver el sitio web desde este link
+
+https://thedrivererashop.netlify.app/
+
+Servidor utilizado: Netlify
+
+## Autor
+
+- [@Juan Euler](https://github.com/juaneuler)
