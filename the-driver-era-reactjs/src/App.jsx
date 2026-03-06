@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
+import { trackGTMEvents } from './analytics/trackEvents'
 
 // Componentes principales
 
@@ -23,9 +24,18 @@ function AppRoutes() {
   const location = useLocation()
   const { showLoader } = useLoader()
 
-  useEffect(() => {
-    showLoader()
-  }, [location])
+useEffect(() => {
+    showLoader();
+    
+    const timer = setTimeout(() => {
+      trackGTMEvents('virtual_page_view', {
+        page_path: location.pathname,
+        page_title: document.title,
+      });
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   return (
     <>
