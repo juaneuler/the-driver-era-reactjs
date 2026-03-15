@@ -1,12 +1,17 @@
-export const trackGTMEvents = (eventName, eventParams = {}) => {
+export const trackGTMEvents = (eventName, ecommerceData = null) => {
     window.dataLayer = window.dataLayer || [];
 
-    window.dataLayer.push({
+    const payload = {
         event: eventName,
-        ...eventParams,
         timestamp: new Date().toISOString(),
-    });
+    };
 
-    // Este log es clave para que vos veas que funciona sin abrir GTM
-    console.log(`%c[GTM Event]: ${eventName}`, "color: #4285f4; font-weight: bold", eventParams);
+    if (ecommerceData) {
+        payload.ecommerce = {
+            ...ecommerceData
+        };
+    }
+
+    window.dataLayer.push(payload);
+    console.log(`%c[GTM Ecommerce]: ${eventName}`, "color: #4285f4; font-weight: bold", payload);
 };
