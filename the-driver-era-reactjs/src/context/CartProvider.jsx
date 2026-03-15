@@ -30,10 +30,16 @@ const CartProvider = ({ children }) => {
     setCarrito(carritoActualizado);
 
     trackGTMEvents("add_to_cart", {
-      item_id: producto.id,
-      item_name: producto.nombre || producto.title,
-      price: producto.precio || producto.price,
-      quantity: cantidadProducto,
+      items: [
+        {
+          item_id: producto.id,
+          item_name: producto.nombre || producto.title,
+          price: producto.precio || producto.price,
+          quantity: cantidadProducto,
+          item_brand: "The Driver Era",
+          item_category: producto.category,
+        },
+      ],
     });
   };
 

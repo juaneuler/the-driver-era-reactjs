@@ -96,6 +96,8 @@ const Checkout = () => {
           item_name: item.nombre || item.title,
           price: item.precio || item.price,
           quantity: item.cantidad,
+          item_brand: "The Driver Era",
+          item_category: item.category || "merch"
         })),
       });
 
